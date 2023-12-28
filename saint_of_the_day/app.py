@@ -9,7 +9,7 @@ from flask_restful import Resource, Api, abort
 
 load_dotenv()
 # setting up logger
-logging.basicConfig(filename="info_app.py",level=logging.INFO,format = '%(levelname)s (%(asctime)s) : %(message)s (%(lineno)d)')
+logging.basicConfig(filename="info_app.log",level=logging.INFO,format = '%(levelname)s (%(asctime)s) : %(message)s (%(lineno)d)')
 # getting environment variables
 PASSWORD = os.getenv("PASSWORD")
 PORT = os.getenv("PORT")
