@@ -1,0 +1,8 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+*.exe
+LICENSE.chromedriver
+.env
+.idea
+__pycache__

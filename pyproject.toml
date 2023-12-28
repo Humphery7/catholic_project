@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "catholic-project"
+version = "0.1.0"
+description = ""
+authors = ["Humphery Ufuoma"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+psycopg2 = "^2.9.9"
+logging = "^0.4.9.6"
+python-dotenv = "^1.0.0"
+selenium = "^4.16.0"
+webdriver-manager = "^4.0.1"
+flask = "^3.0.0"
+flask-restful = "^0.3.10"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
