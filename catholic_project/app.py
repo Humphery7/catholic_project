@@ -11,8 +11,12 @@ load_dotenv()
 # setting up logger
 logging.basicConfig(filename="info_app.log",level=logging.INFO,format = '%(levelname)s (%(asctime)s) : %(message)s (%(lineno)d)')
 # getting environment variables
-PASSWORD = os.getenv("PASSWORD")
-PORT = os.getenv("PORT")
+# getting environment variables
+host = os.getenv("host")
+dbname = os.getenv("dbname")
+user = os.getenv("user")
+password = os.getenv("password")
+port = os.getenv("port")
 
 # instance of flask app and api created
 app = Flask("SaintAPI")
@@ -26,8 +30,8 @@ class Saint(Resource):
         returns a json object"""
 
         # Connect to an existing database
-        with psycopg2.connect(host='localhost', dbname='catholic_saints', user='postgres',
-                              password=PASSWORD, port=PORT) as conn:
+        with psycopg2.connect(host=host, dbname=dbname, user=user,
+                              password=password, port=port) as conn:
             # Open a cursor to perform database operations
             with conn.cursor() as cur:
                 # condition statements check the request passed in and get records from table
@@ -66,4 +70,4 @@ class Saint(Resource):
 api.add_resource(Saint, '/saints/<date>')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

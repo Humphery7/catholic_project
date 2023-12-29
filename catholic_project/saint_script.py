@@ -1,4 +1,5 @@
 import os
+import json
 import logging
 import psycopg2
 from datetime import datetime
@@ -14,10 +15,13 @@ logging.basicConfig(filename='info.log', level=logging.INFO,
                     format='%(levelname)s (%(asctime)s) : %(message)s (%(lineno)d)')
 
 # getting environment variables
-PASSWORD = os.getenv("PASSWORD")
-PORT = os.getenv("PORT")
+host = os.getenv("host")
+dbname = os.getenv("dbname")
+user = os.getenv("user")
+password = os.getenv("password")
+port = os.getenv("port")
 
-# setting up driver for selenium used for scrappig data
+# setting up driver for selenium used for scrapping data
 options = webdriver.ChromeOptions()
 # headless argument removes need of chrome browser instance from running before scrapping is done
 options.add_argument('headless')
@@ -76,8 +80,7 @@ def send_to_database() -> None:
     with data gotten from get data function"""
 
     # Connect to an existing database
-    with psycopg2.connect(host='localhost', dbname='catholic_saints', user='postgres',
-                          password=PASSWORD, port=PORT) as conn:
+    with psycopg2.connect(host=host,dbname=dbname,user=user,password=password,port=port) as conn:
         # Open a cursor to perform database operations
         with conn.cursor() as cur:
             # Execute a command: this creates a new table
