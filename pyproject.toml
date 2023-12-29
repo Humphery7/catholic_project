@@ -20,7 +20,7 @@ flask-restful = "^0.3.10"
 pytest = "^7.4.3"
 
 [tool.poetry.scripts]
-app = "saint_of_the_day.app.app.run"
+app = "catholic_project.app:app.run"
 
 [build-system]
 requires = ["poetry-core"]

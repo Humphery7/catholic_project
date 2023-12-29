@@ -20,7 +20,6 @@ api = Api(app)
 
 
 class Saint(Resource):
-
     def get(self, date) -> jsonify:
         """function connects to existing posgrest database
         and fetches data requires from requested from table
@@ -28,7 +27,7 @@ class Saint(Resource):
 
         # Connect to an existing database
         with psycopg2.connect(host='localhost', dbname='catholic_saints', user='postgres',
-                              password='maxkkott2018', port=5432) as conn:
+                              password=PASSWORD, port=PORT) as conn:
             # Open a cursor to perform database operations
             with conn.cursor() as cur:
                 # condition statements check the request passed in and get records from table
@@ -57,7 +56,9 @@ class Saint(Resource):
                 # else:
                 #     abort(400, message=f'wrong input')
                 #     return None
-                data = cur.fetchall()
+
+                columns = [col[0] for col in cur.description]
+                data = [dict(zip(columns,data)) for data in cur.fetchall()]
 
         return jsonify(data)
 
@@ -65,4 +66,4 @@ class Saint(Resource):
 api.add_resource(Saint, '/saints/<date>')
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
