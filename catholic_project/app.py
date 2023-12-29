@@ -17,6 +17,7 @@ dbname = os.getenv("dbname")
 user = os.getenv("user")
 password = os.getenv("password")
 port = os.getenv("port")
+PORT = os.getenv("PORT")
 
 # instance of flask app and api created
 app = Flask("SaintAPI")
@@ -70,4 +71,4 @@ class Saint(Resource):
 api.add_resource(Saint, '/saints/<date>')
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(host="0.0.0.0",port=PORT, debug=False)
