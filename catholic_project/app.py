@@ -24,7 +24,7 @@ api = Api(app)
 
 
 class Saint(Resource):
-
+    app.route('/saints/<date>')
     def get(self, date) -> jsonify:
         """function connects to existing posgrest database
         and fetches data requires from requested from table
