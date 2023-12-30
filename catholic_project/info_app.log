@@ -9,3 +9,12 @@ INFO (2023-12-29 11:19:51,366) :  * Detected change in 'C:\\Users\\computer worl
 INFO (2023-12-29 11:19:52,119) :  * Restarting with watchdog (windowsapi) (96)
 WARNING (2023-12-29 11:19:52,793) :  * Debugger is active! (96)
 INFO (2023-12-29 11:19:52,817) :  * Debugger PIN: 137-363-904 (96)
+INFO (2023-12-29 23:30:35,954) : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:10000
+ * Running on http://192.168.0.3:10000 (96)
+INFO (2023-12-29 23:30:35,954) : [33mPress CTRL+C to quit[0m (96)
+INFO (2023-12-29 23:32:08,547) : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000 (96)
+INFO (2023-12-29 23:32:08,547) : [33mPress CTRL+C to quit[0m (96)
+INFO (2023-12-29 23:32:14,745) : 127.0.0.1 - - [29/Dec/2023 23:32:14] "GET /saints/all HTTP/1.1" 200 - (96)

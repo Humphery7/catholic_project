@@ -24,6 +24,7 @@ api = Api(app)
 
 
 class Saint(Resource):
+
     def get(self, date) -> jsonify:
         """function connects to existing posgrest database
         and fetches data requires from requested from table
@@ -70,4 +71,4 @@ class Saint(Resource):
 api.add_resource(Saint, '/saints/<date>')
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=10000, debug=False)
+    app.run(host="0.0.0.0",port=10000, debug=True)
