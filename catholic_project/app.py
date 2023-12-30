@@ -18,11 +18,11 @@ password = os.getenv("password")
 port = os.getenv("port")
 
 # instance of flask app and api created
-app = Flask("SaintAPI")
+app = Flask(__name__, template_folder="templates")
 
 @app.route('/')
-@app.route('/saints/<string:date>')
-def get_saints(self, date=None) -> jsonify:
+@app.route('/saints/<date>')
+def get_saints(date=None) -> jsonify:
     """function connects to existing posgrest database
     and fetches data requires from requested from table
     returns a json object"""
@@ -46,8 +46,8 @@ def get_saints(self, date=None) -> jsonify:
                     cur.execute(sql_command, (date,))
                 except Exception as e:
                     # return error 404 message letting user know data not found in database
-                    abort(404, message=f'Data not found for date: {date} : {e}')
-                    return None
+                    # abort(404)
+                    return f'Data not found for date: {date} : {e}'
             else:
                 # attempt to cast passed in request to datetime and looks for corresponding record in table
                 try:
@@ -56,8 +56,8 @@ def get_saints(self, date=None) -> jsonify:
                         sql_command = """SELECT * FROM saints WHERE date = %s"""
                         cur.execute(sql_command, (date,))
                 except Exception as e:
-                    abort(404, message=f'Data not found for date: {date} : {e}')
-                    return None
+                    # abort(404, message=f'Data not found for date: {date} : {e}')
+                    return f'Data not found for date: {date} : {e}'
             # else:
             #     abort(400, message=f'wrong input')
             #     return None
@@ -70,4 +70,4 @@ def get_saints(self, date=None) -> jsonify:
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=10000, debug=True)
+    app.run(host="0.0.0.0",port=10000,debug=False)
