@@ -31,8 +31,8 @@ def get_saints(date=None) -> jsonify:
         return render_template('saints.html')
 
     # Connect to an existing database
-    with psycopg2.connect(host=host, dbname=dbname, user=user,
-                          password=password, port=port) as conn:
+    with psycopg2.connect(host="dpg-cm70icun7f5s73cbhlsg-a", dbname="catholic_saints", user="catholic_saints_user",
+                          password="ISh7frD50z82acWego9uorybWQBW3aG5", port=5432) as conn:
         # Open a cursor to perform database operations
         with conn.cursor() as cur:
             # condition statements check the request passed in and get records from table
