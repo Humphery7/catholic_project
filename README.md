@@ -1,8 +1,5 @@
 # catholic_project
 
-Certainly! Below is a template for your project's README file. Feel free to customize it based on your specific details and preferences:
-
----
 
 # Saint of the Day Project
 
@@ -21,7 +18,7 @@ The **Saint of the Day** project is designed to provide users with information a
 
 ### Prerequisites
 
-- Python 3.x
+- Python 3.9
 - [Selenium](https://selenium-python.readthedocs.io/)
 - [Flask](https://flask.palletsprojects.com/)
 - [Psycopg2](https://www.psycopg.org/)
