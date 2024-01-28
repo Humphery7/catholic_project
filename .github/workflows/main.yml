@@ -6,11 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout saint_script
+    - name: Checkout saint_script
       uses: actions/checkout@v3
 
     - name: setup python
-      uses: python/setup-python@v4
+      uses: actions/setup-python@v4
       with:
         python-version: '3.9'
 
