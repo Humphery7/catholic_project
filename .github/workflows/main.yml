@@ -1,8 +1,6 @@
 name: continuous_integration_saint
 
-on: 
-  schedule:
-  - cron: "*/2 * * * *"
+on: push
 
 jobs:
   build:
