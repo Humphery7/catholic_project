@@ -22,7 +22,7 @@ jobs:
     - name: install dependencies
       run: poetry install
   
-  run_saint_script:
+  script:
     runs-on: ubuntu-latest
     steps:
       env:
