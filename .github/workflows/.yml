@@ -2,7 +2,9 @@ name: cicd_saint_of_the_day
 run-name: ${{ github.actor }} is running this script
 
 # runs every day at 00:00 
-on: push
+on: 
+  schedule:
+  - cron: "* * * * *" 
 
 
 jobs:
