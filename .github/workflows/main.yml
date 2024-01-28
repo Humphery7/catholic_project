@@ -32,10 +32,3 @@ jobs:
         password: ${{ secrets.password }}
         port: ${{ secrets.port }}
       run: saint_script.py
-
-
-
-
-
-
-
