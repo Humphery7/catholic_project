@@ -1,8 +1,6 @@
 name: cicd_saint_of_the_day
 
-# runs every day at 00:00 
 on: push
-
 
 jobs:
   build:
