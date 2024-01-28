@@ -1,6 +1,8 @@
 name: continuous_integration_saint
 
-on: push
+on: 
+  schedule:
+  - cron: "* * * *"
 
 jobs:
   build:
@@ -23,5 +25,5 @@ jobs:
     needs: build
     steps:
       - name: saint_script
-        run: poetry run saint_script.py
+        run: saint_script.py
    
