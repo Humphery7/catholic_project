@@ -23,7 +23,7 @@ jobs:
       - name: Print current directory
         run: |
           pwd
-          
+
       - name: change directory
         run: cd catholic_project
 
