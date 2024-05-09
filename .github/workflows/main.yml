@@ -27,6 +27,6 @@ jobs:
       - name: run saint_script
         env:
           URI: ${{secrets.URI}}
-        run: catholic_project/saint_script.py
+        run: saint_script.py
 
    
