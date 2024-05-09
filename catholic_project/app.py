@@ -1,73 +1,66 @@
 import os
-import logging
-import psycopg2
-from datetime import datetime
 from dotenv import load_dotenv
-from flask import Flask, jsonify, abort, render_template
+from datetime import datetime
+from flask import Flask,jsonify, abort, render_template
+from pymongo.server_api import ServerApi
+from pymongo.mongo_client import MongoClient
 
 
 load_dotenv()
-# setting up logger
-logging.basicConfig(filename="info_app.log",level=logging.INFO,format = '%(levelname)s (%(asctime)s) : %(message)s (%(lineno)d)')
-# getting environment variables
-# getting environment variables
-host = os.getenv("host")
-dbname = os.getenv("dbname")
-user = os.getenv("user")
-password = os.getenv("password")
-port = os.getenv("port")
-
-# instance of flask app and api created
-app = Flask(__name__, template_folder="templates")
+uri = os.getenv("URI")
+app = Flask(__name__,template_folder="templates")
 
 @app.route('/')
-@app.route('/saints/<date>')
+@app.route('/saints/<date>',methods=['GET'])
 def get_saints(date=None) -> jsonify:
-    """function connects to existing posgrest database
-    and fetches data requires from requested from table
-    returns a json object"""
-
+    global results
     if date == None:
-        return render_template('saints.html')
-
-    # Connect to an existing database
-    with psycopg2.connect(host=host, dbname=dbname, user=user,
-                          password=password, port=port) as conn:
-        # Open a cursor to perform database operations
-        with conn.cursor() as cur:
-            # condition statements check the request passed in and get records from table
-            if date == "all":
-                sql_command = """SELECT * FROM saints"""
-                cur.execute(sql_command)
-            elif date == 'today':
-                try:
-                    date = datetime.today().strftime('%m-%d-%Y')
-                    sql_command = """SELECT * FROM saints WHERE date = %s"""
-                    cur.execute(sql_command, (date,))
-                except Exception as e:
-                    # return error 404 message letting user know data not found in database
-                    # abort(404)
-                    return f'Data not found for date: {date} : {e}'
-            else:
-                # attempt to cast passed in request to datetime and looks for corresponding record in table
-                try:
-                    if isinstance(datetime.strptime(date, '%m_%d_%Y'), datetime):
-                        date = datetime.strptime(date, '%m_%d_%Y').strftime('%m-%d-%Y')
-                        sql_command = """SELECT * FROM saints WHERE date = %s"""
-                        cur.execute(sql_command, (date,))
-                except Exception as e:
-                    # abort(404, message=f'Data not found for date: {date} : {e}')
-                    return f'Data not found for date: {date} : {e}'
-            # else:
-            #     abort(400, message=f'wrong input')
-            #     return None
-
-            columns = [col[0] for col in cur.description]
-            data = [dict(zip(columns,data)) for data in cur.fetchall()]
-
-    return jsonify(data)
+        #return home page if no date is specified
+        return render_template("saints.html")
+    elif date == "all":
+        try:
+            #connecting to mongodb cluster
+            client = MongoClient(uri,server_api = ServerApi("1"))
+            database = client['catholic']
+            collection  = database['saints']
+            #find all documents in collection
+            results = collection.find({},{"_id":0})
+        except Exception as e:
+            return f'Data not found for date: {date} : {e}'
+    elif date == 'today':
+        try:
+            client = MongoClient(uri,server_api = ServerApi("1"))
+            database = client['catholic']
+            collection  = database['saints']
+            date = datetime.today().strftime('%m-%d-%Y')
+            filter_ = {'date':date}
+            # find all documents in collection
+            results = collection.find(filter_,{"_id":0})
+        except Exception as e:
+            return f'Data not found for date: {date} : {e}'
+    else:
+        try:
+            if isinstance(datetime.strptime(date, '%m_%d_%Y'), datetime):
+                #converting passed in date to string format
+                date = datetime.strptime(date, '%m_%d_%Y').strftime('%m-%d-%Y')
+                client = MongoClient(uri,server_api = ServerApi("1"))
+                database = client['catholic']
+                collection  = database['saints']
+                filter_ = {'date': date}
+                #find documents with specified date
+                results = collection.find(filter_,{"_id":0})
+        except Exception as e:
+            return f'Data not found for date: {date} : {e}'
 
 
+    document_list = [doc for doc in results]
+    return jsonify(document_list)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
+
+# date = "5_5_2024"
+# if isinstance(datetime.strptime(date, '%m_%d_%Y'), datetime):
+#     #converting passed in date to string format
+#     date = datetime.strptime(date, '%m_%d_%Y').strftime('%m-%d-%Y')
+#     print(date)

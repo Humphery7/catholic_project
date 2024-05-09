@@ -15,6 +15,7 @@ webdriver-manager = "^4.0.1"
 flask = "^3.0.0"
 flask-restful = "^0.3.10"
 gunicorn = "^21.2.0"
+pymongo = "^4.7.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -22,6 +23,7 @@ pytest = "^7.4.3"
 
 [tool.poetry.scripts]
 app = "catholic_project.app:app.run"
+script = "catholic_project.saint_script:operation"
 
 
 [build-system]
