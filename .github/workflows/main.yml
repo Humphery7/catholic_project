@@ -1,8 +1,8 @@
 name: continuous_integration_saint
 
-on:
-  schedule:
-    - cron: '*/5 * * * *'  #0 0 */1 * *
+on: push
+#  schedule:
+#    - cron: '*/1 * * * *'  #0 0 */1 * *
 
 jobs:
   build:
@@ -27,6 +27,6 @@ jobs:
       - name: run saint_script
         env:
           URI: ${{secrets.URI}}
-        run: saint_script.py
+        run: catholic_project/saint_script.py
 
    
