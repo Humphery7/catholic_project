@@ -95,10 +95,12 @@ def send_to_database(document) -> None:
     except Exception as e:
         print("Error occured", e);
 
-
-if __name__ == "__main__":
+def combined():
     get_data()
     send_to_database(items_list)
+
+if __name__ == "__main__":
+    combined()
 
 
     # print(ssl.OPENSSL_VERSION)
