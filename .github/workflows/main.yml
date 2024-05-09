@@ -2,7 +2,7 @@ name: continuous_integration_saint
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  #0 0 */1 * *
+    - cron: '*/1 * * * *'
 
 jobs:
   build:
