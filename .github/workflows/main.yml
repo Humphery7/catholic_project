@@ -20,6 +20,13 @@ jobs:
       - name: Install Dependencies
         run: poetry install
 
+      - name: Print current directory
+        run: |
+          pwd
+          
+      - name: change directory
+        run: cd catholic_project
+
       - name: run saint_script
         env:
           URI: ${{secrets.URI}}
