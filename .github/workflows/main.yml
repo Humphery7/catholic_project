@@ -24,12 +24,12 @@ jobs:
         run: |
           pwd
 
-      - name: change directory
-        run: cd catholic_project
-
       - name: run saint_script
         env:
           URI: ${{secrets.URI}}
-        run: poetry run saints_script
+
+        run: |
+          echo $URI
+          poetry run saints_script
 
    
