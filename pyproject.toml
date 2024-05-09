@@ -23,7 +23,7 @@ pytest = "^7.4.3"
 
 [tool.poetry.scripts]
 app = "catholic_project.app:app.run"
-saints_script = "catholic_projct.saint_script:combined"
+saints_script = "catholic_project.saint_script:combined"
 script = "catholic_project.saint_script:operation"
 
 
