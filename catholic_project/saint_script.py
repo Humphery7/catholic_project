@@ -20,7 +20,6 @@ def combined():
 
     # getting environment variables
     uri = os.environ["URI"]
-    print(uri)
     #setting up driver for selenium used for scrapping data
     options = webdriver.ChromeOptions()
     #headless argument removes need of chrome browser instance from running before scrapping is done
