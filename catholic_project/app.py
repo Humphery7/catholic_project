@@ -57,7 +57,7 @@ def get_saints(date=None) -> jsonify:
     return jsonify(document_list)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 
 # date = "5_5_2024"
 # if isinstance(datetime.strptime(date, '%m_%d_%Y'), datetime):
