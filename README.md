@@ -73,7 +73,7 @@ The **Saint of the Day** project is designed to provide users with information a
 
 1. Deploy the Flask API on Render.
 
-2. Create a PostgreSQL database on Render and set the database URL as an environmental variable.
+2. Create MongoDB Database and deploy with MongoDB Atlas.
 
 ## Contributing
 
