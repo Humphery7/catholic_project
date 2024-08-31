@@ -62,7 +62,7 @@ The **Saint of the Day** project is designed to provide users with information a
    python app.py
    ```
 
-   The API will be accessible at `http://localhost:5000`.
+   The API will be accessible at `https://flask-api-catholic-project.onrender.com`.
 
 3. Access the API endpoints:
 
