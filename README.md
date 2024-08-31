@@ -12,7 +12,8 @@ The **Saint of the Day** project is designed to provide users with information a
 - **Web Scraping:** Utilizes Selenium to scrape data about saints from online sources.
 - **Database Update:** Utilizes psycopg2 to update a PostgreSQL database with saint information.
 - **Flask API:** Provides a RESTful API with endpoints to fetch saint data.
-- **Render Deployment:** The API and the PostgreSQL database are deployed on Render for accessibility.
+- **Render Deployment:** The API is deployed on Render for accessibility.
+- **MongoDB Database:** Tha database is deployed on MongoDB Atlas
 
 ## Getting Started
 
